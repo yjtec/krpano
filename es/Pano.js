@@ -31,6 +31,7 @@ import { AsyncLoadPano, loadPano } from './AsyncLoadPano';
 import { path, basepath } from './defaultConfig';
 import request from 'umi-request';
 import { isUrl } from './utils/utils';
+import music from './music';
 
 var generateId = function () {
   var i = 0;
@@ -62,7 +63,7 @@ function (_Component) {
       var _componentDidMount = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var kr, _this$props, xml, url, krOptions;
+        var _ref, kr, musicBg, musicExplain, _this$props, xml, url, krOptions;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -72,7 +73,10 @@ function (_Component) {
                 return loadPano();
 
               case 2:
-                kr = _context.sent;
+                _ref = _context.sent;
+                kr = _ref.krpanoJS;
+                musicBg = _ref.musicBg;
+                musicExplain = _ref.musicExplain;
                 _this$props = this.props, xml = _this$props.xml, url = _this$props.url;
                 krOptions = {
                   target: this.uniqueId,
@@ -91,16 +95,15 @@ function (_Component) {
 
                 kr.embedpano(_objectSpread({}, krOptions, {
                   onready: function onready(krpano) {
+                    music(krpano, musicBg, musicExplain);
+
                     if (xml) {
-                      console.log(xml);
                       krpano.call('loadxml(' + xml + ')');
                     }
-
-                    console.log(123);
                   }
                 }));
 
-              case 7:
+              case 10:
               case "end":
                 return _context.stop();
             }

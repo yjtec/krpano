@@ -7,3 +7,14 @@ export const importCDN = (url, name) => new Promise(resolve => {
   };
   document.head.appendChild(dom);
 });
+
+export const importAudio = uniqueId => {
+  const audio = document.createElement('audio');
+  audio.id = uniqueId;
+  audio.autoplay = true;
+  audio.preload = true;
+  audio.controls = true;
+  audio.style.display = 'none';
+  document.body.appendChild(audio);
+  return audio;
+}

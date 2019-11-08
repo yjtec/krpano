@@ -6,7 +6,7 @@ export default function() {
       <h1>pano test</h1>
       <div className={styles.pano}>
         <Pano
-          url="http://192.168.1.240:99/api/project/projectXml?id=21&type=xml"
+          url="http://test.gatewy.360vrsh.com/api/pano/project/projectXml?id=14&type=xml"
         />
       </div>
     </div>

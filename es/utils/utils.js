@@ -11,3 +11,13 @@ export var importCDN = function importCDN(url, name) {
     document.head.appendChild(dom);
   });
 };
+export var importAudio = function importAudio(uniqueId) {
+  var audio = document.createElement('audio');
+  audio.id = uniqueId;
+  audio.autoplay = true;
+  audio.preload = true;
+  audio.controls = true;
+  audio.style.display = 'none';
+  document.body.appendChild(audio);
+  return audio;
+};

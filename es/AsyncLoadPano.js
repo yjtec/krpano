@@ -21,9 +21,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 import React from 'react';
-import { importCDN } from './utils/utils';
+import { importCDN, importAudio } from './utils/utils';
 var isLoader = false;
 var krpanoJS = null;
+var musicBg = null;
+var musicExplain = null;
 
 var loadPano =
 /*#__PURE__*/
@@ -40,14 +42,24 @@ function () {
               break;
             }
 
-            return _context.abrupt("return", Promise.resolve(krpanoJS));
+            return _context.abrupt("return", Promise.resolve({
+              krpanoJS: krpanoJS,
+              musicBg: musicBg,
+              musicExplain: musicExplain
+            }));
 
           case 2:
             _context.next = 4;
             return importCDN("http://test.res.jsvry.com/krpano/tour.js", "krpanoJS").then(function (re) {
               krpanoJS = re;
               isLoader = true;
-              return Promise.resolve(krpanoJS);
+              musicBg = importAudio('musicBg');
+              musicExplain = importAudio('musicExplain');
+              return Promise.resolve({
+                krpanoJS: krpanoJS,
+                musicBg: musicBg,
+                musicExplain: musicExplain
+              });
             });
 
           case 4:

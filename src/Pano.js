@@ -3,6 +3,7 @@ import {AsyncLoadPano,loadPano} from './AsyncLoadPano';
 import {path,basepath} from './defaultConfig';
 import request from 'umi-request';
 import {isUrl} from './utils/utils';
+import music from './music';
 const generateId = (()=>{
   let i = 0;
   return (prefix='') => {
@@ -16,7 +17,7 @@ class Pano extends Component{
     this.uniqueId = generateId('pano-');
   }
   async componentDidMount(){
-    const kr = await loadPano();
+    const {krpanoJS:kr,musicBg,musicExplain} = await loadPano();
     const {xml,url} = this.props;
     const krOptions = {
       target:this.uniqueId,
@@ -34,11 +35,10 @@ class Pano extends Component{
     kr.embedpano({
       ...krOptions,
       onready:(krpano) => {
+        music(krpano,musicBg,musicExplain);
         if(xml){
-          console.log(xml);
           krpano.call('loadxml('+xml+')')
         }
-        console.log(123);
       }
     })
   }
