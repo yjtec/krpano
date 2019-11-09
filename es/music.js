@@ -1,8 +1,13 @@
+import { importAudio } from './utils/utils';
+var musicBg = null;
+var musicExplain = null;
 export default (function (krpano, musicBg, musicExplain) {
   var web = navigator.userAgent;
   var isiOS = !!web.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
   var music_bg = '';
   var music_explain = '';
+  musicBg = importAudio('musicBg');
+  musicExplain = importAudio('musicExplain');
 
   window.getXmlScene = function (music1, music2, loop1, loop2) {
     if (music1) {
@@ -109,4 +114,9 @@ export default (function (krpano, musicBg, musicExplain) {
   };
 
   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
+  window.musicunmount = function () {
+    musicBg.remove();
+    musicExplain.remove();
+  };
 });

@@ -63,7 +63,7 @@ function (_Component) {
       var _componentDidMount = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var _ref, kr, musicBg, musicExplain, _this$props, xml, url, krOptions;
+        var kr, _this$props, xml, url, krOptions;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -73,10 +73,7 @@ function (_Component) {
                 return loadPano();
 
               case 2:
-                _ref = _context.sent;
-                kr = _ref.krpanoJS;
-                musicBg = _ref.musicBg;
-                musicExplain = _ref.musicExplain;
+                kr = _context.sent;
                 _this$props = this.props, xml = _this$props.xml, url = _this$props.url;
                 krOptions = {
                   target: this.uniqueId,
@@ -95,7 +92,8 @@ function (_Component) {
 
                 kr.embedpano(_objectSpread({}, krOptions, {
                   onready: function onready(krpano) {
-                    music(krpano, musicBg, musicExplain);
+                    //music(krpano,musicBg,musicExplain);
+                    music(krpano);
 
                     if (xml) {
                       krpano.call('loadxml(' + xml + ')');
@@ -103,7 +101,7 @@ function (_Component) {
                   }
                 }));
 
-              case 10:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -117,6 +115,11 @@ function (_Component) {
 
       return componentDidMount;
     }()
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.musicunmount();
+    }
   }, {
     key: "render",
     value: function render() {

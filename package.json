@@ -1,6 +1,6 @@
 {
   "name": "@yjtec/krpano",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "yjtec krpano",
   "files":["lib","es"],
   "main": "lib/index.js",

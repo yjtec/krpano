@@ -8,6 +8,11 @@ const Router = DefaultRouter;
 
 const routes = [
   {
+    path: '/close',
+    exact: true,
+    component: require('../close.js').default,
+  },
+  {
     path: '/',
     exact: true,
     component: require('../index.js').default,

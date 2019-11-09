@@ -17,7 +17,8 @@ class Pano extends Component{
     this.uniqueId = generateId('pano-');
   }
   async componentDidMount(){
-    const {krpanoJS:kr,musicBg,musicExplain} = await loadPano();
+    //const {krpanoJS:kr,musicBg,musicExplain} = await loadPano();
+    const kr = await loadPano();
     const {xml,url} = this.props;
     const krOptions = {
       target:this.uniqueId,
@@ -35,12 +36,16 @@ class Pano extends Component{
     kr.embedpano({
       ...krOptions,
       onready:(krpano) => {
-        music(krpano,musicBg,musicExplain);
+        //music(krpano,musicBg,musicExplain);
+        music(krpano);
         if(xml){
           krpano.call('loadxml('+xml+')')
         }
       }
     })
+  }
+  componentWillUnmount(){
+    window.musicunmount()
   }
   render(){
     return(

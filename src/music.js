@@ -1,8 +1,13 @@
+import {importAudio} from './utils/utils';
+let musicBg = null;
+let musicExplain = null;
 export default (krpano,musicBg,musicExplain) => {
   let web = navigator.userAgent;
   let isiOS = !!web.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
   let music_bg = '';
   let music_explain = '';
+  musicBg = importAudio('musicBg');
+  musicExplain = importAudio('musicExplain');
   window.getXmlScene = function(music1,music2,loop1,loop2){
     if (music1) {
       krpano.set('layer["musicBg_img"].crop','0|0|100|100');
@@ -102,5 +107,11 @@ export default (krpano,musicBg,musicExplain) => {
         musicExplain.play();
     }
   }
-  document.addEventListener(visibilityChangeEvent, onVisibilityChange);  
+  document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
+  window.musicunmount = function(){
+    musicBg.remove();
+    musicExplain.remove();
+
+  }
 }
