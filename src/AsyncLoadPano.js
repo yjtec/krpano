@@ -15,7 +15,7 @@ const loadPano  = async (callback) => {
     isLoader = true;
     // musicBg = importAudio('musicBg');
     // musicExplain = importAudio('musicExplain');
-    console.log(re);
+    //console.log(window);
     return Promise.resolve(re);
     //return Promise.resolve({krpanoJS,musicBg,musicExplain});
   })

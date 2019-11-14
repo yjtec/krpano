@@ -75,6 +75,7 @@ function (_Component) {
               case 2:
                 kr = _context.sent;
                 _this$props = this.props, xml = _this$props.xml, url = _this$props.url;
+                this.panoId = this.uniqueId + '-mainSWFOBJ';
                 krOptions = {
                   target: this.uniqueId,
                   html5: "auto",
@@ -90,6 +91,7 @@ function (_Component) {
                   krOptions.xml = url;
                 }
 
+                console.log(kr);
                 kr.embedpano(_objectSpread({}, krOptions, {
                   onready: function onready(krpano) {
                     //music(krpano,musicBg,musicExplain);
@@ -98,10 +100,14 @@ function (_Component) {
                     if (xml) {
                       krpano.call('loadxml(' + xml + ')');
                     }
+
+                    krpano.set('events.onpreviewcomplete', function () {
+                      console.log('complete');
+                    });
                   }
                 }));
 
-              case 7:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -119,6 +125,7 @@ function (_Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       window.musicunmount();
+      window.removepano(this.panoId);
     }
   }, {
     key: "render",

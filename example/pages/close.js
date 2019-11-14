@@ -21,7 +21,7 @@ class XmlView extends React.Component{
         <div className={styles.pano}>
           {isOpen && (
             <Pano
-              url="http://test.gatewy.360vrsh.com/api/pano/project/projectXml?id=8&type=xml"
+              url="/api/pano/project/projectXml?id=5&type=xml"
             />
           )}
           

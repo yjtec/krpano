@@ -49,8 +49,8 @@ function () {
               krpanoJS = re;
               isLoader = true; // musicBg = importAudio('musicBg');
               // musicExplain = importAudio('musicExplain');
+              //console.log(window);
 
-              console.log(re);
               return Promise.resolve(re); //return Promise.resolve({krpanoJS,musicBg,musicExplain});
             });
 

@@ -20,6 +20,7 @@ class Pano extends Component{
     //const {krpanoJS:kr,musicBg,musicExplain} = await loadPano();
     const kr = await loadPano();
     const {xml,url} = this.props;
+    this.panoId = this.uniqueId+'-mainSWFOBJ';
     const krOptions = {
       target:this.uniqueId,
       html5:"auto",
@@ -33,6 +34,7 @@ class Pano extends Component{
     if(url){
       krOptions.xml = url;
     }
+    console.log(kr);
     kr.embedpano({
       ...krOptions,
       onready:(krpano) => {
@@ -41,11 +43,19 @@ class Pano extends Component{
         if(xml){
           krpano.call('loadxml('+xml+')')
         }
+
+        krpano.set('events.onpreviewcomplete',function(){
+          
+          console.log('complete');
+        })
+
+
       }
     })
   }
   componentWillUnmount(){
-    window.musicunmount()
+    window.musicunmount();
+    window.removepano(this.panoId);
   }
   render(){
     return(

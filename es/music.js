@@ -10,6 +10,8 @@ export default (function (krpano, musicBg, musicExplain) {
   musicExplain = importAudio('musicExplain');
 
   window.getXmlScene = function (music1, music2, loop1, loop2) {
+    console.log(8888888);
+
     if (music1) {
       krpano.set('layer["musicBg_img"].crop', '0|0|100|100');
     } else {
@@ -116,7 +118,11 @@ export default (function (krpano, musicBg, musicExplain) {
   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
 
   window.musicunmount = function () {
+    console.log(99999999);
+    musicBg.pause();
+    musicExplain.pause();
     musicBg.remove();
     musicExplain.remove();
+    window.getXmlScene = null;
   };
 });
