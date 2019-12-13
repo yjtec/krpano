@@ -14,7 +14,7 @@ export const importAudio = uniqueId => {
   audio.autoplay = true;
   audio.preload = true;
   audio.controls = true;
-  audio.style.display = 'block';
+  audio.style.display = 'none';
   document.body.appendChild(audio);
   return audio;
 }

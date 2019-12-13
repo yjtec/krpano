@@ -10,8 +10,6 @@ export default (function (krpano, musicBg, musicExplain) {
   musicExplain = importAudio('musicExplain');
 
   window.getXmlScene = function (music1, music2, loop1, loop2) {
-    console.log(8888888);
-
     if (music1) {
       krpano.set('layer["musicBg_img"].crop', '0|0|100|100');
     } else {
@@ -84,11 +82,11 @@ export default (function (krpano, musicBg, musicExplain) {
   };
 
   musicBg.addEventListener('play', function () {
-    document.removeEventListener('click', playMusicBg, false);
+    window.removeEventListener('touchend', playMusicBg, false);
     document.removeEventListener('WeixinJSBridgeReady', playMusicBg, false);
   }, false);
   musicExplain.addEventListener('play', function () {
-    document.removeEventListener('click', playMusicExplain, false);
+    window.removeEventListener('touchend', playMusicExplain, false);
     document.removeEventListener('WeixinJSBridgeReady', playMusicExplain, false);
   }, false); //ios微信下自动播放音乐
 
@@ -96,12 +94,16 @@ export default (function (krpano, musicBg, musicExplain) {
     document.addEventListener("WeixinJSBridgeReady", playMusicBg, false);
     document.addEventListener("WeixinJSBridgeReady", playMusicExplain, false);
   } else {
+    document.addEventListener("WeixinJSBridgeReady", playMusicBg, false);
+    document.addEventListener("WeixinJSBridgeReady", playMusicExplain, false);
     playMusicBg();
     playMusicExplain();
-  }
+  } //document.addEventListener('click', playMusicBg);
+  //document.addEventListener('click', playMusicExplain);
 
-  document.addEventListener('click', playMusicBg);
-  document.addEventListener('click', playMusicExplain);
+
+  window.addEventListener("touchend", playMusicBg, false);
+  window.addEventListener("touchend", playMusicExplain, false);
   var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in document ? 'mozHidden' : null;
   var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
 
@@ -118,7 +120,6 @@ export default (function (krpano, musicBg, musicExplain) {
   document.addEventListener(visibilityChangeEvent, onVisibilityChange);
 
   window.musicunmount = function () {
-    console.log(99999999);
     musicBg.pause();
     musicExplain.pause();
     musicBg.remove();

@@ -19,7 +19,7 @@ class Pano extends Component{
   async componentDidMount(){
     //const {krpanoJS:kr,musicBg,musicExplain} = await loadPano();
     const kr = await loadPano();
-    const {xml,url} = this.props;
+    const {xml,url,vars} = this.props;
     this.panoId = this.uniqueId+'-mainSWFOBJ';
     const krOptions = {
       target:this.uniqueId,
@@ -31,10 +31,12 @@ class Pano extends Component{
       mobilescale: 1.0,
       passQueryParameters: true,
     }
+    if(vars){
+      krOptions.initvars = vars;
+    }
     if(url){
       krOptions.xml = url;
     }
-    console.log(kr);
     kr.embedpano({
       ...krOptions,
       onready:(krpano) => {
@@ -46,7 +48,7 @@ class Pano extends Component{
 
         krpano.set('events.onpreviewcomplete',function(){
           
-          console.log('complete');
+          //console.log('complete');
         })
 
 

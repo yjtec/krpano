@@ -18,6 +18,11 @@ const routes = [
     component: require('../index.js').default,
   },
   {
+    path: '/redpack',
+    exact: true,
+    component: require('../redpack.js').default,
+  },
+  {
     path: '/xml',
     exact: true,
     component: require('../xml.js').default,

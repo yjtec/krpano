@@ -63,7 +63,7 @@ function (_Component) {
       var _componentDidMount = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var kr, _this$props, xml, url, krOptions;
+        var kr, _this$props, xml, url, vars, krOptions;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -74,7 +74,7 @@ function (_Component) {
 
               case 2:
                 kr = _context.sent;
-                _this$props = this.props, xml = _this$props.xml, url = _this$props.url;
+                _this$props = this.props, xml = _this$props.xml, url = _this$props.url, vars = _this$props.vars;
                 this.panoId = this.uniqueId + '-mainSWFOBJ';
                 krOptions = {
                   target: this.uniqueId,
@@ -87,11 +87,14 @@ function (_Component) {
                   passQueryParameters: true
                 };
 
+                if (vars) {
+                  krOptions.initvars = vars;
+                }
+
                 if (url) {
                   krOptions.xml = url;
                 }
 
-                console.log(kr);
                 kr.embedpano(_objectSpread({}, krOptions, {
                   onready: function onready(krpano) {
                     //music(krpano,musicBg,musicExplain);
@@ -101,8 +104,7 @@ function (_Component) {
                       krpano.call('loadxml(' + xml + ')');
                     }
 
-                    krpano.set('events.onpreviewcomplete', function () {
-                      console.log('complete');
+                    krpano.set('events.onpreviewcomplete', function () {//console.log('complete');
                     });
                   }
                 }));
